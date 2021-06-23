@@ -1,0 +1,53 @@
+---
+runtime: shell
+code: |
+  /app/log-actions "$ApiKey" "$text" "$fields" "$action"
+  source /app/output.txt
+    export $(cut -d= -f1 /app/output.txt)
+inputProperties:
+  - name: ApiKey
+    type: text
+    title: ApiKey
+    placeHolder: API Key to Query LINT
+    defaultValue: ""
+    bindable: true
+    labelInfo: true
+    labelMessage: API Key to Query LINT
+  - name: action
+    type: select
+    title: Action name
+    placeHolder: Action name
+    defaultValue: 
+    bindable: true
+    labelInfo: true
+    labelMessage:
+    options:
+       - optionKey : ingestLogs
+         optionValue : Ingest Logs
+  - name: text
+    type: textarea
+    title: Text
+    placeHolder: Raw Text we want to ingest to LINT
+    defaultValue: ""
+    bindable: true
+    labelInfo: true
+    labelMessage: Raw Text we want to ingest to LINT
+  - name: fields
+    type: textarea
+    title: Fields 
+    placeHolder: Key value pairs that we want to push to LINT with raw text. key1=value1,key2=value2
+    defaultValue: ""
+    bindable: true
+    labelInfo: true
+    labelMessage: Key value pairs that we want to push to LINT with raw text. key1=value1,key2=value2
+         
+outputProperties:
+  - name: output
+    type: label
+    title: Output
+  - name: outputHTML
+    type: label
+    title: Output HTML
+  - name: outputPrettyText
+    type: label
+    title: Output Pretty Text
